@@ -1,0 +1,20 @@
+/*src/Componentes/Styles/Sidebar.css*/
+
+.App-sidebar {
+    background-color: #bcb3b3; /* Ajusta este valor según tus necesidades */
+    color: #0e0e0e; /* Ajusta este valor según tus necesidades */
+    width: 200px; /* Ajusta este valor según tus necesidades */
+    height: 50vh; /* Asegúrate de que tu barra lateral ocupe toda la altura de la vista del navegador */
+    padding: 20px; /* Ajusta este valor según tus necesidades */
+    margin: 50px 0px 50px 50px;
+  }
+
+  .App-sidebar li {
+  font-weight:lighter;
+  margin-bottom: 10px ;
+}
+
+
+  
+
+  
