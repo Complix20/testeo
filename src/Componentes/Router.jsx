@@ -1,9 +1,9 @@
 //src/Componentes/Router.jsx
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import Sidebar from './Sidebar';
-import Productos from './Productos';
-import Dashboard from './Dashboard';
+import Sidebar from './Componentes/Sidebar';
+import Productos from './Componentes/Productos';
+import Dashboard from './Componentes/Dashboard';
 
 function AppRouter() {
   return (
@@ -12,12 +12,9 @@ function AppRouter() {
       <Switch>
         <Route path="/dashboard" component={Dashboard} />
         <Route path="/productos" component={Productos} />
-        <Route path="/" component={Dashboard} />
       </Switch>
     </Router>
   );
 }
 
 export default AppRouter;
-
-
