@@ -1,5 +1,6 @@
 // src/Componentes/Sidebar.jsx
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './Styles/Sidebar.css';
 function Sidebar() {
   return (
@@ -7,9 +8,9 @@ function Sidebar() {
       <h2>Admin</h2>
       <nav>
         <ul>
-          <li>Dashboard</li>
+          <li><Link to="/dashboard">Dashboard</Link></li>
           <li>Usuarios registrados</li>
-          <li>Productos</li>
+          <li><Link to="/productos">Productos</Link></li>
           <li>Órdenes</li>
           <li>Productos más vendidos</li>
           <li>Series</li>
