@@ -31,10 +31,34 @@ function Productos() {
       </div>
       <SearchBox onSearch={handleSearch} />
       {/* Mostrar la lista de productos filtrados */}
-      {/* Por ejemplo: */}
-      {filteredProducts.map((product) => (
-        <div key={product.id}>{product.detalle}</div>
-      ))}
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Detalle</th>
+            <th>Serie</th>
+            <th>Precio</th>
+            <th>Fecha de Registro</th>
+            <th>Stock</th>
+            <th>Estado</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          {filteredProducts.map((product) => (
+            <tr key={product.id}>
+              <td>{product.id}</td>
+              <td>{product.detalle}</td>
+              <td>{product.serie}</td>
+              <td>{product.precio}</td>
+              <td>{product.fechaRegistro}</td>
+              <td>{product.stock}</td>
+              <td>{product.estado}</td>
+              <td>Acciones aquí</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 }

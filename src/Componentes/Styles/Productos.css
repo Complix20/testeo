@@ -4,7 +4,7 @@
     
     width: 100%; /* Ajusta este valor según tus necesidades */
     padding: 20px; /* Ajusta este valor según tus necesidades */
-    height: 100vh; /* O ajusta la altura según tus necesidades */
+    height: 100vh; /* Ajusta la altura según tus necesidades */
     overflow-y: auto;
     
   }
@@ -36,3 +36,30 @@
     /* Otros estilos según tus preferencias */
   }
   
+table {
+  width: calc(100% - 58px);
+  border-collapse: collapse;
+  border-bottom: 5px solid #000000; /* Borde de la tabla */
+  color: black;
+  margin: 30px;
+  min-height: 300px; /* Ajusta la altura según tus necesidades */
+  overflow-y: auto; 
+  background-color: #f5f5f5;
+  
+    
+  }
+  
+  /* Estilos para las celdas de la tabla */
+th, td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd; /* Borde inferior de las celdas */
+    padding-right: 50px;
+    
+  }
+  
+  /* Estilos para la primera fila (encabezados) */
+th {
+    padding-left: 10px; 
+    font-weight: bold;
+  }
