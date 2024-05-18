@@ -1,7 +1,9 @@
 /*Componentes/Styles/Dashboard.css*/
 .Dashboard {
-    width: 100%; /* Ajusta este valor según tus necesidades */
+    width: 10%; /* Ajusta este valor según tus necesidades */
     padding: 20px; /* Ajusta este valor según tus necesidades */
+    height: 100vh; /* O ajusta la altura según tus necesidades */
+    overflow-y: auto;
   }
   
 .Statistics {
