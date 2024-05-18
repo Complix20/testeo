@@ -1,0 +1,17 @@
+.Agregacion {
+    width: 100%; /* Ajusta este valor según tus necesidades */
+    padding: 20px; /* Ajusta este valor según tus necesidades */
+    min-height: 100vh; /* O ajusta la altura según tus necesidades */
+    overflow-y: auto;
+  }
+
+.Cabezon {
+    display: flex;
+    justify-content: space-between;
+    background-color: #f5f5f5;
+    color: black;
+    font-weight: bold;
+    margin:30px ;
+    padding: 20px;
+    font-size: 20px;
+  }

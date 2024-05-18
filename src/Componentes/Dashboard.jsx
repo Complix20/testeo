@@ -16,7 +16,7 @@ function Dashboard() {
         <div className="ChangeDate">
           Cambiar Fecha o Periodo: 
           <input type="date" value={selectedDate} onChange={handleDateChange} />
-          </div>
+        </div>
       </div>
       <div className="Statistics">
         <div className="StatItem">68 <br /> Órdenes del día de hoy</div>

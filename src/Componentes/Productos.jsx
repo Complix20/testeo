@@ -1,5 +1,6 @@
 // src/Componentes/Productos.jsx
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import './Styles/Productos.css'; // Importa tu archivo CSS
 import SearchBox from './SearchBox'; // Importa el componente SearchBox
 
@@ -33,8 +34,9 @@ function Productos() {
       <div className="Cabecita1">
         <div>Productos</div>
         <div className="agregacion-prod">
-          {/* Aquí agregaremos el botón "Agregar producto" */}
+          <Link to="/agregar-producto">
           <button className="agregar-btn">+ Agregar producto</button>
+          </Link>
         </div>
       </div>
       <SearchBox onSearch={handleSearch} />

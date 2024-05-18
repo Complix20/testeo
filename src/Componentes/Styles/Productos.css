@@ -6,7 +6,8 @@
     padding: 20px; /* Ajusta este valor según tus necesidades */
     min-height: 90vh; /* Ajusta la altura según tus necesidades */
     overflow-y: auto;
-    overflow-x: hidden;     
+    overflow-x: hidden;
+    min-height: 100vh;     
   }
 
 .Cabecita1{
@@ -27,7 +28,7 @@
   }
   
 .agregar-btn {
-    background-color: #007bff;
+    background-color: #0f0f0f;
     color: #fff;
     border: none;
     padding: 10px 20px;
