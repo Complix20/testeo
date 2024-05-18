@@ -4,7 +4,7 @@
     
     width: 100%; /* Ajusta este valor según tus necesidades */
     padding: 20px; /* Ajusta este valor según tus necesidades */
-    min-height: 100vh; /* Ajusta la altura según tus necesidades */
+    min-height: 90vh; /* Ajusta la altura según tus necesidades */
     overflow-y: auto;
     overflow-x: hidden;     
   }

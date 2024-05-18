@@ -4,18 +4,23 @@
     background-color: #bcb3b3; /* Ajusta este valor según tus necesidades */
     color: black; /* Ajusta este valor según tus necesidades */
     width: 10%; /* Ajusta este valor según tus necesidades */
-    height: 50vh; /* Asegúrate de que tu barra lateral ocupe toda la altura de la vista del navegador */
-    padding: 20px; /* Ajusta este valor según tus necesidades */
+    height: 60vh; /* Asegúrate de que tu barra lateral ocupe toda la altura de la vista del navegador */
+    padding: 30px; /* Ajusta este valor según tus necesidades */
     margin: 50px;
-    font-size: 13px;
-    
-    
+    font-size: 80%;
+    overflow-x: hidden; /* Evita el desbordamiento horizontal */
+    overflow-y: hidden;
   }
 
 .App-sidebar li {
   font-weight:bold;
   margin-bottom: 10px ;
+  padding-bottom: 15%;
   
+}
+
+.App-sidebar h2{
+  padding-bottom: 15%;
 }
 
 .App-sidebar a {
