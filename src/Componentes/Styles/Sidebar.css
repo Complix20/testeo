@@ -6,7 +6,7 @@
     width: 200px; /* Ajusta este valor según tus necesidades */
     height: 50vh; /* Asegúrate de que tu barra lateral ocupe toda la altura de la vista del navegador */
     padding: 20px; /* Ajusta este valor según tus necesidades */
-    margin: 50px 0px 50px 50px;
+    margin: 50px;
   }
 
 .App-sidebar li {
