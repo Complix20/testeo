@@ -13,7 +13,7 @@ function AddProd({ onProductAdded }) {
   const [stock, setStock] = useState('');
   const [imagen, setImagen] = useState(null);
 
-  const generateUniqueId = () => `_${Math.random().toString(36).substr(2, 9)}`;
+  const generateUniqueId = () => Math.floor(Date.now() * Math.random());
 
   const handleGuardar = () => {
     const nuevoProducto = {
@@ -27,6 +27,7 @@ function AddProd({ onProductAdded }) {
       tipo,
       stock,
       imagen,
+      fechaRegistro: new Date().toLocaleDateString(), // Añadir fecha de registro
     };
 
     onProductAdded(nuevoProducto);

@@ -26,5 +26,6 @@ html, body, #root, .App {
 
 .princi{
   display: flex;
+  flex-grow: 1; 
 }
 

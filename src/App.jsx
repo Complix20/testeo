@@ -19,7 +19,7 @@ function App() {
   }, []);
 
   const handleAgregarProducto = (nuevoProducto) => {
-    const nuevosProductos = [...productos, nuevoProducto];
+    const nuevosProductos = [nuevoProducto, ...productos];
     setProductos(nuevosProductos);
     localStorage.setItem('productos', JSON.stringify(nuevosProductos));
   };
@@ -51,3 +51,4 @@ function App() {
 }
 
 export default App;
+
