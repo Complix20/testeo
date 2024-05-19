@@ -1,5 +1,6 @@
 // src/Componentes/AddProd.jsx
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './Styles/AddProd.css';
 
 function AddProd({ onProductAdded }) {
@@ -12,6 +13,8 @@ function AddProd({ onProductAdded }) {
   const [tipo, setTipo] = useState('');
   const [stock, setStock] = useState('');
   const [imagen, setImagen] = useState(null);
+
+  const navigate = useNavigate();
 
   const generateUniqueId = () => Math.floor(Date.now() * Math.random());
 
@@ -27,7 +30,7 @@ function AddProd({ onProductAdded }) {
       tipo,
       stock,
       imagen,
-      fechaRegistro: new Date().toLocaleDateString(), // Añadir fecha de registro
+      fechaRegistro: new Date().toLocaleDateString(),
     };
 
     onProductAdded(nuevoProducto);
@@ -42,6 +45,8 @@ function AddProd({ onProductAdded }) {
     setTipo('');
     setStock('');
     setImagen(null);
+
+    navigate('/productos'); // Redirigir a la página de productos
   };
 
   const handleImagenChange = (e) => {
@@ -86,3 +91,6 @@ function AddProd({ onProductAdded }) {
 }
 
 export default AddProd;
+
+
+

@@ -21,7 +21,7 @@
 .Formulario {
     margin-top: 20px;
     padding: 20px;
-    background-color: white;
+    background-color: rgb(46, 44, 44);
     border: 1px solid #ddd;
     border-radius: 5px;
     margin: 30px;
@@ -44,8 +44,8 @@
   
   /* Estilos para el botón */
 .Formulario button {
-    background-color: #0f1011;
-    color: white;
+    background-color: white;
+    color: black;
     border: none;
     padding: 10px 20px;
     border-radius: 5px;
@@ -85,7 +85,8 @@
   
 }
 label{
-  color: black;
+  color: white;
+  font-weight: bold;
 }
 .Formulario input,
 .Formulario textarea {
