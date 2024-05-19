@@ -1,30 +1,40 @@
 // src/Componentes/Productos.jsx
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import './Styles/Productos.css'; // Importa tu archivo CSS
-import SearchBox from './SearchBox'; // Importa el componente SearchBox
+import React, { useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import './Styles/Productos.css';
+import SearchBox from './SearchBox';
 
-function Productos() {
-  const [filteredProducts, setFilteredProducts] = useState([]); // Aquí debes usar tu lista de productos
-  const itemsPerPage = 10; // Cambia esto según tus necesidades
+function Productos({ productos, onDesactivarProducto }) {
+  const [filteredProducts, setFilteredProducts] = useState(productos);
+  const itemsPerPage = 10;
   const [currentPage, setCurrentPage] = useState(1);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    setFilteredProducts(productos);
+  }, [productos]);
 
   const handleSearch = (query) => {
-    // Filtra los productos según la consulta de búsqueda (query)
-    // Actualiza filteredProducts con los resultados
-    // Por ejemplo:
-    const filtered = USERS.filter((product) => {
+    const filtered = productos.filter((product) => {
       return (
         product.id.includes(query) ||
         product.serie.includes(query) ||
-        product.detalle.includes(query)
+        product.nombre.includes(query) ||
+        product.descripcion.includes(query)
       );
     });
     setFilteredProducts(filtered);
-    setCurrentPage(1); // Reinicia la página actual al realizar una búsqueda
+    setCurrentPage(1);
   };
 
-  // Calcula los índices para la paginación
+  const handleVerProducto = (producto) => {
+    navigate(`/producto/${producto.id}`);
+  };
+
+  const handleDesactivarProducto = (id) => {
+    onDesactivarProducto(id);
+  };
+
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems = filteredProducts.slice(indexOfFirstItem, indexOfLastItem);
@@ -35,22 +45,20 @@ function Productos() {
         <div>Productos</div>
         <div className="agregacion-prod">
           <Link to="/agregar-producto">
-          <button className="agregar-btn">+ Agregar producto</button>
+            <button className="agregar-btn">+ Agregar producto</button>
           </Link>
         </div>
       </div>
       <SearchBox onSearch={handleSearch} />
-      {/* Mostrar la lista de productos filtrados */}
       <table>
         <thead>
           <tr>
             <th>ID</th>
-            <th>Detalle</th>
+            <th>Nombre</th>
+            <th>Descripcion</th>
             <th>Serie</th>
             <th>Precio</th>
-            <th>Fecha de Registro</th>
             <th>Stock</th>
-            <th>Estado</th>
             <th>Acciones</th>
           </tr>
         </thead>
@@ -58,18 +66,19 @@ function Productos() {
           {currentItems.map((product) => (
             <tr key={product.id}>
               <td>{product.id}</td>
-              <td>{product.detalle}</td>
+              <td>{product.nombre}</td>
+              <td>{product.descripcion}</td>
               <td>{product.serie}</td>
               <td>{product.precio}</td>
-              <td>{product.fechaRegistro}</td>
               <td>{product.stock}</td>
-              <td>{product.estado}</td>
-              <td>Acciones aquí</td>
+              <td>
+                <button onClick={() => handleVerProducto(product)}>Ver</button>
+                <button onClick={() => handleDesactivarProducto(product.id)}>Desactivar</button>
+              </td>
             </tr>
           ))}
         </tbody>
       </table>
-      {/* Componente de navegación de paginación */}
       <div className="pagination">
         <button onClick={() => setCurrentPage(currentPage - 1)} disabled={currentPage === 1}>
           Anterior

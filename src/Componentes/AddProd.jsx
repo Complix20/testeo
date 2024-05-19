@@ -1,8 +1,8 @@
 // src/Componentes/AddProd.jsx
 import React, { useState } from 'react';
-import './Styles/AddProd.css'; // Importa tu archivo CSS
+import './Styles/AddProd.css';
 
-function AddProd() {
+function AddProd({ onProductAdded }) {
   const [nombre, setNombre] = useState('');
   const [descripcion, setDescripcion] = useState('');
   const [caracteristicas, setCaracteristicas] = useState('');
@@ -11,12 +11,13 @@ function AddProd() {
   const [precio, setPrecio] = useState('');
   const [tipo, setTipo] = useState('');
   const [stock, setStock] = useState('');
-  const [imagen, setImagen] = useState(null); // Estado para la imagen
+  const [imagen, setImagen] = useState(null);
+
+  const generateUniqueId = () => `_${Math.random().toString(36).substr(2, 9)}`;
 
   const handleGuardar = () => {
-    // Aquí puedes guardar los datos en la tabla de Productos
-    // También puedes enviar la imagen al servidor si es necesario
-    console.log('Datos guardados:', {
+    const nuevoProducto = {
+      id: generateUniqueId(),
       nombre,
       descripcion,
       caracteristicas,
@@ -25,12 +26,24 @@ function AddProd() {
       precio,
       tipo,
       stock,
-      imagen, // Agrega la imagen al objeto de datos
-    });
+      imagen,
+    };
+
+    onProductAdded(nuevoProducto);
+
+    // Restablecer los campos del formulario
+    setNombre('');
+    setDescripcion('');
+    setCaracteristicas('');
+    setMarca('');
+    setSerie('');
+    setPrecio('');
+    setTipo('');
+    setStock('');
+    setImagen(null);
   };
 
   const handleImagenChange = (e) => {
-    // Maneja el cambio de la imagen
     const file = e.target.files[0];
     setImagen(URL.createObjectURL(file));
   };
@@ -39,93 +52,34 @@ function AddProd() {
     <div className="Agregacion">
       <div className="Cabezon">Agregar Producto</div>
       <div className="Formulario">
-      <div className="ImagenContainer">
-      <div className='ImageLoad'>
-      {imagen && <img src={imagen} alt="Imagen seleccionada" />}
-      </div>
-      <div className='peque'> 
-      <input
-          type="file"
-          accept="image/*"
-          onChange={handleImagenChange} // Maneja el cambio de la imagen
-        />
+        <div className="ImagenContainer">
+          <div className='ImageLoad'>
+            {imagen && <img src={imagen} alt="Imagen seleccionada" />}
+          </div>
+          <div className='peque'> 
+            <input type="file" accept="image/*" onChange={handleImagenChange} />
+          </div>
         </div>
-      </div>     
-      <div className="Forms">
-        <label htmlFor="nombre">Nombre:</label>
-        <br />
-        <input
-          type="text"
-          placeholder="Nombre"
-          value={nombre}
-          onChange={(e) => setNombre(e.target.value)}
-        />
-        <br />
-        <label htmlFor="descripcion">Descripcion:</label>
-        <br />
-        <textarea
-          placeholder="Descripción"
-          value={descripcion}
-          onChange={(e) => setDescripcion(e.target.value)}
-        />
-        <br />
-        <label htmlFor="caracteristicas">Carateriscas:</label>
-        <br />
-        <input
-          type="text"
-          placeholder="Características"
-          value={caracteristicas}
-          onChange={(e) => setCaracteristicas(e.target.value)}
-        />
-        <br />
-        <label htmlFor="marca">Marca:</label>
-        <br />
-        <input
-          type="text"
-          placeholder="Marca"
-          value={marca}
-          onChange={(e) => setMarca(e.target.value)}
-        />
-        <br />
-        <label htmlFor="serie">Serie:</label>
-        <br />
-        <input
-          type="text"
-          placeholder="Serie"
-          value={serie}
-          onChange={(e) => setSerie(e.target.value)}
-        />
-        <br />
-        <label htmlFor="precio">Precio:</label>
-        <br />
-        <input
-          type="text"
-          placeholder="Precio"
-          value={precio}
-          onChange={(e) => setPrecio(e.target.value)}
-        />
-        <br />
-        <label htmlFor="tipo">Tipo:</label>
-        <br />
-        <input
-          type="text"
-          placeholder="Tipo"
-          value={tipo}
-          onChange={(e) => setTipo(e.target.value)}
-        />
-        <br />
-        <label htmlFor="descripcion">Descripcion:</label>
-        <br />
-        <br />
-        <input
-          type="text"
-          placeholder="Stock"
-          value={stock}
-          onChange={(e) => setStock(e.target.value)}
-        />
-        <button onClick={handleGuardar}>Guardar</button>
+        <div className="Forms">
+          <label htmlFor="nombre">Nombre:</label>
+          <input type="text" placeholder="Nombre" value={nombre} onChange={(e) => setNombre(e.target.value)} />
+          <label htmlFor="descripcion">Descripcion:</label>
+          <textarea placeholder="Descripción" value={descripcion} onChange={(e) => setDescripcion(e.target.value)} />
+          <label htmlFor="caracteristicas">Carateriscas:</label>
+          <input type="text" placeholder="Características" value={caracteristicas} onChange={(e) => setCaracteristicas(e.target.value)} />
+          <label htmlFor="marca">Marca:</label>
+          <input type="text" placeholder="Marca" value={marca} onChange={(e) => setMarca(e.target.value)} />
+          <label htmlFor="serie">Serie:</label>
+          <input type="text" placeholder="Serie" value={serie} onChange={(e) => setSerie(e.target.value)} />
+          <label htmlFor="precio">Precio:</label>
+          <input type="text" placeholder="Precio" value={precio} onChange={(e) => setPrecio(e.target.value)} />
+          <label htmlFor="tipo">Tipo:</label>
+          <input type="text" placeholder="Tipo" value={tipo} onChange={(e) => setTipo(e.target.value)} />
+          <label htmlFor="stock">Stock:</label>
+          <input type="text" placeholder="Stock" value={stock} onChange={(e) => setStock(e.target.value)} />
+          <button onClick={handleGuardar}>Guardar</button>
+        </div>
       </div>
-    </div>
     </div>
   );
 }
