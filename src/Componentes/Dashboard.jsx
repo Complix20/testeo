@@ -4,18 +4,30 @@ import React, { useState } from 'react';
 
 function Dashboard() {
   const [selectedDate, setSelectedDate] = useState('');
+  const [showDateInput, setShowDateInput] = useState(false);
 
   const handleDateChange = (event) => {
     setSelectedDate(event.target.value);
   };
+
+  const handleToggleDateInput = () => {
+    setShowDateInput(!showDateInput);
+  };
+
   return (
-    
     <div className="Dashboard">
       <div className="Cabecita">
         <div>Dashboard</div>
         <div className="ChangeDate">
-          Cambiar Fecha o Periodo: 
-          <input type="date" value={selectedDate} onChange={handleDateChange} />
+          <button onClick={handleToggleDateInput}>Cambiar Fecha o Periodo:</button>
+          {showDateInput && (
+            <input 
+              type="date" 
+              value={selectedDate} 
+              onChange={handleDateChange} 
+              onBlur={() => setShowDateInput(false)}
+            />
+          )}
         </div>
       </div>
       <div className="Statistics">
@@ -28,3 +40,5 @@ function Dashboard() {
 }
 
 export default Dashboard;
+
+
