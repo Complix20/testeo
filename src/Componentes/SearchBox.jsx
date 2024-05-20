@@ -15,7 +15,7 @@ function SearchBox({ onSearch }) {
     <div className="search-box">
       <input
         type="text"
-        placeholder="Buscar por ID, serie o detalle..."
+        placeholder="Buscar por ID, serie o nombre..."
         value={searchText}
         onChange={(e) => setSearchText(e.target.value)}
         onKeyUp={handleKeyPress} // Escucha el evento onKeyUp

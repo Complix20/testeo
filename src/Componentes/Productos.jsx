@@ -1,4 +1,4 @@
-/* /src/Componentes/Productos.jsx */
+// src/Componentes/Productos.jsx
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './Styles/Productos.css';
@@ -16,10 +16,11 @@ function Productos({ productos, onDesactivarProducto, onProductAdded }) {
 
   const handleSearch = (query) => {
     const filtered = productos.filter((product) =>
-      product.id.includes(query) ||
-      product.serie.includes(query) ||
-      product.nombre.includes(query)
+      String(product.id).toLowerCase().includes(query.toLowerCase()) ||
+      String(product.serie).toLowerCase().includes(query.toLowerCase()) ||
+      product.nombre.toLowerCase().includes(query.toLowerCase())
     );
+    console.log("Filtered Products: ", filtered); // Agrega este console.log para verificar
     setFilteredProducts(filtered);
     setCurrentPage(1);
   };
@@ -29,9 +30,9 @@ function Productos({ productos, onDesactivarProducto, onProductAdded }) {
   };
 
   const handleView = (product) => {
-    navigate('/ver-producto', { state: { product } });
+    navigate(`/ver-producto/${product.id}`, { state: { product } });
   };
-
+  
   const handleUpdate = (product) => {
     navigate('/agregar-producto', { state: { product } });
   };
@@ -95,5 +96,3 @@ function Productos({ productos, onDesactivarProducto, onProductAdded }) {
 }
 
 export default Productos;
-
-

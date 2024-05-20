@@ -46,7 +46,7 @@ function App() {
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/productos" element={<Productos productos={productos} onDesactivarProducto={handleDesactivarProducto} onProductAdded={handleAgregarProducto} />} />
             <Route path="/agregar-producto" element={<AddProd onProductAdded={handleAgregarProducto} />} />
-            <Route path="/producto/:id" element={<VerProducto productos={productos} />} />
+            <Route path="/ver-producto/:id" element={<VerProducto productos={productos} />} />
           </Routes>
         </div>
         <Footer />
@@ -56,6 +56,3 @@ function App() {
 }
 
 export default App;
-
-
-
