@@ -40,11 +40,13 @@
 }
 
 table {
-  width: 100%;
+  width: 96.6%;
   border-collapse: collapse;
   color: black;
   margin: 30px 0;
   background-color: #f5f5f5;
+  margin-left: 1.7%;
+  
 }
 
 th, td {

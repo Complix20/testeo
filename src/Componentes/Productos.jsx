@@ -1,12 +1,12 @@
-/* Productos.jsx */
+/* /src/Componentes/Productos.jsx */
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './Styles/Productos.css';
 import SearchBox from './SearchBox';
 
-function Productos({ productos, onDesactivarProducto }) {
+function Productos({ productos, onDesactivarProducto, onProductAdded }) {
   const [filteredProducts, setFilteredProducts] = useState([]);
-  const itemsPerPage = 4;  // Limitar a 4 productos por página
+  const itemsPerPage = 4; // Limitar a 4 productos por página
   const [currentPage, setCurrentPage] = useState(1);
   const navigate = useNavigate();
 
@@ -16,10 +16,9 @@ function Productos({ productos, onDesactivarProducto }) {
 
   const handleSearch = (query) => {
     const filtered = productos.filter((product) =>
-      product.id.toString().includes(query) ||
-      product.serie.toLowerCase().includes(query.toLowerCase()) ||
-      product.nombre.toLowerCase().includes(query.toLowerCase()) ||
-      product.descripcion.toLowerCase().includes(query.toLowerCase())
+      product.id.includes(query) ||
+      product.serie.includes(query) ||
+      product.nombre.includes(query)
     );
     setFilteredProducts(filtered);
     setCurrentPage(1);
@@ -29,8 +28,12 @@ function Productos({ productos, onDesactivarProducto }) {
     onDesactivarProducto(id);
   };
 
-  const handleView = (id) => {
-    navigate(`/producto/${id}`);
+  const handleView = (product) => {
+    navigate('/ver-producto', { state: { product } });
+  };
+
+  const handleUpdate = (product) => {
+    navigate('/agregar-producto', { state: { product } });
   };
 
   const indexOfLastItem = currentPage * itemsPerPage;
@@ -48,39 +51,36 @@ function Productos({ productos, onDesactivarProducto }) {
         </div>
       </div>
       <SearchBox onSearch={handleSearch} />
-      <div className="table-responsive">
-        <table>
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Nombre</th>
-              <th>Descripción</th>
-              <th>Serie</th>
-              <th>Precio</th>
-              <th>Fecha de Registro</th>
-              <th>Stock</th>
-              <th>Acciones</th>
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Descripción</th>
+            <th>Serie</th>
+            <th>Precio</th>
+            <th>Stock</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          {currentItems.map((product) => (
+            <tr key={product.id}>
+              <td>{product.id}</td>
+              <td>{product.nombre}</td>
+              <td>{product.descripcion}</td>
+              <td>{product.serie}</td>
+              <td>{product.precio}</td>
+              <td>{product.stock}</td>
+              <td>
+                <button onClick={() => handleView(product)}>Ver</button>
+                <button onClick={() => handleUpdate(product)}>Actualizar</button>
+                <button onClick={() => handleDelete(product.id)}>Desactivar</button>
+              </td>
             </tr>
-          </thead>
-          <tbody>
-            {currentItems.map((product) => (
-              <tr key={product.id}>
-                <td>{product.id}</td>
-                <td>{product.nombre}</td>
-                <td>{product.descripcion}</td>
-                <td>{product.serie}</td>
-                <td>{product.precio}</td>
-                <td>{product.fechaRegistro}</td>
-                <td>{product.stock}</td>
-                <td>
-                  <button onClick={() => handleView(product.id)}>Ver</button>
-                  <button onClick={() => handleDelete(product.id)}>Desactivar</button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+          ))}
+        </tbody>
+      </table>
       <div className="pagination">
         <button onClick={() => setCurrentPage(currentPage - 1)} disabled={currentPage === 1}>
           Anterior
@@ -95,3 +95,5 @@ function Productos({ productos, onDesactivarProducto }) {
 }
 
 export default Productos;
+
+

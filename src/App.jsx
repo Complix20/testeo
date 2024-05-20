@@ -19,7 +19,12 @@ function App() {
   }, []);
 
   const handleAgregarProducto = (nuevoProducto) => {
-    const nuevosProductos = [nuevoProducto, ...productos];
+    let nuevosProductos;
+    if (productos.find(producto => producto.id === nuevoProducto.id)) {
+      nuevosProductos = productos.map(producto => producto.id === nuevoProducto.id ? nuevoProducto : producto);
+    } else {
+      nuevosProductos = [nuevoProducto, ...productos];
+    }
     setProductos(nuevosProductos);
     localStorage.setItem('productos', JSON.stringify(nuevosProductos));
   };
@@ -39,7 +44,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Dashboard />} />
             <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/productos" element={<Productos productos={productos} onDesactivarProducto={handleDesactivarProducto} />} />
+            <Route path="/productos" element={<Productos productos={productos} onDesactivarProducto={handleDesactivarProducto} onProductAdded={handleAgregarProducto} />} />
             <Route path="/agregar-producto" element={<AddProd onProductAdded={handleAgregarProducto} />} />
             <Route path="/producto/:id" element={<VerProducto productos={productos} />} />
           </Routes>

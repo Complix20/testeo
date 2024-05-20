@@ -1,6 +1,6 @@
 // src/Componentes/AddProd.jsx
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import './Styles/AddProd.css';
 
 function AddProd({ onProductAdded }) {
@@ -13,14 +13,32 @@ function AddProd({ onProductAdded }) {
   const [tipo, setTipo] = useState('');
   const [stock, setStock] = useState('');
   const [imagen, setImagen] = useState(null);
+  const [id, setId] = useState(null);
 
   const navigate = useNavigate();
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.state && location.state.product) {
+      const { product } = location.state;
+      setId(product.id);
+      setNombre(product.nombre);
+      setDescripcion(product.descripcion);
+      setCaracteristicas(product.caracteristicas);
+      setMarca(product.marca);
+      setSerie(product.serie);
+      setPrecio(product.precio);
+      setTipo(product.tipo);
+      setStock(product.stock);
+      setImagen(product.imagen);
+    }
+  }, [location]);
 
   const generateUniqueId = () => Math.floor(Date.now() * Math.random());
 
   const handleGuardar = () => {
     const nuevoProducto = {
-      id: generateUniqueId(),
+      id: id || generateUniqueId(),
       nombre,
       descripcion,
       caracteristicas,
@@ -56,7 +74,7 @@ function AddProd({ onProductAdded }) {
 
   return (
     <div className="Agregacion">
-      <div className="Cabezon">Agregar Producto</div>
+      <div className="Cabezon">{id ? 'Actualizar Producto' : 'Agregar Producto'}</div>
       <div className="Formulario">
         <div className="ImagenContainer">
           <div className='ImageLoad'>
@@ -83,7 +101,7 @@ function AddProd({ onProductAdded }) {
           <input type="text" placeholder="Tipo" value={tipo} onChange={(e) => setTipo(e.target.value)} />
           <label htmlFor="stock">Stock:</label>
           <input type="text" placeholder="Stock" value={stock} onChange={(e) => setStock(e.target.value)} />
-          <button onClick={handleGuardar}>Guardar</button>
+          <button onClick={handleGuardar}>{id ? 'Actualizar' : 'Guardar'}</button>
         </div>
       </div>
     </div>
@@ -91,6 +109,4 @@ function AddProd({ onProductAdded }) {
 }
 
 export default AddProd;
-
-
 
